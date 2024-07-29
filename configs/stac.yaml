@@ -5,7 +5,7 @@ paths:
   transform_path: "transform.p"
   data_path: "./tests/data/test_pred_only_1000_frames.mat"
 
-n_fit_frames: 1000
+n_fit_frames: 10
 skip_fit: False
 skip_transform: True
 

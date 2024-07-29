@@ -110,7 +110,7 @@ def set_keypoint_sites(physics, sites, kps):
     return physics, physics.model.ptr
 
 
-def create_body_sites(root: mjcf.Element):
+def create_body_sites(root: mjcf.Element, scale_factor=1.0):
     """Create body site elements using dmcontrol mjcf for each keypoint.
 
     Args:
@@ -136,21 +136,21 @@ def create_body_sites(root: mjcf.Element):
 
     rescale.rescale_subtree(
         root,
-        utils.params["SCALE_FACTOR"],
-        utils.params["SCALE_FACTOR"],
+        scale_factor,
+        scale_factor,
     )
     physics = mjcf.Physics.from_mjcf_model(root)
     # Usage of physics: binding = physics.bind(body_sites)
 
     axis = physics.named.model.site_pos._axes[0]
-    utils.params["site_index_map"] = {
+    site_index_map = {
         key: int(axis.convert_key_item(key))
         for key in utils.params["KEYPOINT_MODEL_PAIRS"].keys()
     }
 
-    utils.params["part_names"] = initialize_part_names(physics)
+    part_names = initialize_part_names(physics)
 
-    return physics, physics.model.ptr
+    return physics, physics.model.ptr, site_index_map, part_names
 
 
 def chunk_kp_data(kp_data):
