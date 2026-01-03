@@ -97,14 +97,12 @@ Our rendering functions support multiple backends: `egl`, `glfw`, and `osmesa`. 
    python -m ipykernel install --user --name stac-mjx-env --display-name "Python (stac-mjx-env)"
    ```
    
-## Usage
 
-### Keypoint Correspondence UI
-For establishing the correspondence between motion capture 3D landmarks and keypoints in the virtual body model, we provide a dedicated UI tool at [stac-keypoints-ui](https://github.com/talmolab/stac-keypoints-ui). This tool allows you to visually map your motion capture keypoints to the corresponding locations on the body model, which is essential for accurate inverse kinematics.
+## Usage
 
 1. Update the .yaml files in `config/` with the proper information (details WIP).
 
-2. Run stac-mjx with its basic api: `load_configs` for loading configs and `run_stac` for the keypoint registration. Below is an example script, found in `demos/use_api.ipynb`. A CLI script is also provided at `run_stac.py`. Refer to [hydra documention](https://hydra.cc/docs/advanced/override_grammar/basic/) for formatting args to override configs.
+2. Run stac-mjx with its basic api: `load_configs` for loading configs and `run_stac` for the keypoint registration. Below is an example script, found in `demos/rodent_demo.ipynb`. A CLI script is also provided at `run_stac.py`. Refer to [hydra documention](https://hydra.cc/docs/advanced/override_grammar/basic/) for formatting args to override configs.
 
    ```python
    import stac_mjx 
@@ -157,6 +155,8 @@ For establishing the correspondence between motion capture 3D landmarks and keyp
    
 4. If the rendering is poor, it's likely that some hyperparameter tuning is necessary. (details WIP)
 
+Note: For establishing the correspondence between motion capture 3D landmarks and keypoints in the virtual body model, we provide a dedicated UI tool at [stac-keypoints-ui](https://github.com/talmolab/stac-keypoints-ui). This tool allows you to visually map your motion capture keypoints to the corresponding locations on the body model, which is essential for accurate inverse kinematics.
+
 ### Command line interface
 You can run the full pipeline from the CLI after installation:
 
@@ -175,4 +175,4 @@ Hydra overrides can be appended after the CLI flags. For example, to change the 
 stac-mjx --config-path configs --config-name config stac.data_path=path/to/data.nwb stac.n_fit_frames=100
 ```
 
-The legacy `run_stac.py` wrapper remains available and now delegates to the same CLI entry point.
+The `run_stac.py` python script delegates to this CLI entry point.

@@ -27,7 +27,7 @@ dependencies = [
     "hydra-core",
     "imageio[ffmpeg]",
     "h5py",
-    "flax[all]",
+    "flax",
     "optax",
     "mediapy",
     "ndx_pose==0.1.1",
@@ -56,7 +56,6 @@ dev = [
     "matplotlib",
     "opencv-python",
     "mediapy",
-    "numba",
     ]
 
 [project.urls]
