@@ -100,12 +100,12 @@ Our rendering functions support multiple backends: `egl`, `glfw`, and `osmesa`. 
 
 ## Usage
 
-First, update the appropriate config files in `config/` with the proper information for your body model/tracking data (details WIP).
+There a few different ways to run stac-mjx. A full demo of the functionality is found at `demos/rodent_demo.ipynb`.
 
-There a few different ways to use stac-mjx. A full demo of the functionality is found at `demos/rodent_demo.ipynb`.
+To start, the appropriate files in `config/` need to be updated with the proper information for your body model/tracking data (details WIP).
 
-### Using Command Line Interface (recommended)
-You can run the full pipeline from the CLI after installation:
+### Using Command Line Interface
+If no customization is needed, you can run the full pipeline from the CLI:
 
 ```bash
 stac-mjx --config-path configs --config-name config
@@ -124,7 +124,9 @@ stac-mjx --config-path configs --config-name config stac.data_path=path/to/data.
 
 ### In a Jupyter Notebook
 
-1. Run stac-mjx with its basic api: `load_configs` for loading configs and `run_stac` for the keypoint registration. A CLI script is also provided (see below).
+A set of high-level functions are surfaced if you want to separate the data preparation and config loading from the STAC algorithm itself. This allows you to modify the data given to the algorithm (`stac_mjx.run_stac`) if needed. Below is the most basic usage.
+
+1. Run stac-mjx with its basic api: `load_configs` for loading configs and `run_stac` for the keypoint registration.
 
    ```python
    import stac_mjx 
