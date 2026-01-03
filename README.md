@@ -156,3 +156,23 @@ For establishing the correspondence between motion capture 3D landmarks and keyp
    ```
    
 4. If the rendering is poor, it's likely that some hyperparameter tuning is necessary. (details WIP)
+
+### Command line interface
+You can run the full pipeline from the CLI after installation:
+
+```bash
+stac-mjx --config-path configs --config-name config
+```
+
+Common options:
+- `--base-path`: base directory for data/models (defaults to current working directory)
+- `--print-config`: show the composed Hydra config and exit
+- `--skip-xla-flags`: skip setting XLA environment flags before running
+
+Hydra overrides can be appended after the CLI flags. For example, to change the data path and number of fit frames:
+
+```bash
+stac-mjx --config-path configs --config-name config stac.data_path=path/to/data.nwb stac.n_fit_frames=100
+```
+
+The legacy `run_stac.py` wrapper remains available and now delegates to the same CLI entry point.
