@@ -102,7 +102,11 @@ Our rendering functions support multiple backends: `egl`, `glfw`, and `osmesa`. 
 
 There a few different ways to run stac-mjx. A full demo of the functionality is found at `demos/rodent_demo.ipynb`.
 
-To start, the appropriate files in `config/` need to be updated with the proper information for your body model/tracking data (details WIP).
+First, configure your body model and STAC parameters in `config/`:
+   - `configs/config.yaml` selects defaults for `model` and `stac` (you can copy/rename this for custom presets).
+   - `configs/model/*.yaml` defines the MuJoCo model file (`MJCF_PATH`), keypoint names/order, and mappings in `KEYPOINT_MODEL_PAIRS` plus initial offsets and scale factors.
+   - `configs/stac/*.yaml` sets data paths (e.g., `stac.data_path`), clip sizes, fit/IK output paths, and solver settings.
+   - Ensure `KEYPOINT_MODEL_PAIRS` covers every keypoint in your mocap data and that `stac.data_path` points to your `.nwb`, `.mat`, or `.h5` file. Use Hydra overrides to experiment without editing files, e.g., `stac-mjx stac.data_path=path/to/data.nwb model.MJCF_PATH=models/rodent.xml`.
 
 ### Using Command Line Interface
 If no customization is needed, you can run the full pipeline from the CLI:
